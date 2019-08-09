@@ -1,24 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+
 import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.scss']
+  styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  @Output() selectedRecipe = new EventEmitter<Recipe>();
+  @Output() recipeWasSelected = new EventEmitter<Recipe>();
   recipes: Recipe[] = [
-    new Recipe(
-      'Test',
-      'This is a recipe',
-      'https://www.hogarmania.com/archivos/201502/1580-coca-de-puerro-y-mejillones-764-xl-668x400x80xX.jpg'
-    ),
-    new Recipe(
-      'Test',
-      'This is a recipe',
-      'https://www.hogarmania.com/archivos/201502/1580-coca-de-puerro-y-mejillones-764-xl-668x400x80xX.jpg'
-    )
+    new Recipe('A Test Recipe', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg'),
+    new Recipe('Another Test Recipe', 'This is simply a test', 'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
   ];
 
   constructor() { }
@@ -26,8 +19,8 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelectRecipe(recipe: Recipe){
-    this.selectedRecipe.emit(recipe);
+  onRecipeSelected(recipe: Recipe) {
+   this.recipeWasSelected.emit(recipe);
   }
 
 }
